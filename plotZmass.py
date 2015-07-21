@@ -16,7 +16,7 @@ for iEvt in range( tree.GetEntries() ) :
     muon = getattr(tree,"Muons")
     muonCharge = getattr(tree,"MuonCharge")
     run = getattr(tree,"RunNum")
-    if run != 251251 : continue
+    #if run != 251251 : continue
     # check for two oppositely charged muons
     if muon.size() == 2 : 
         if muonCharge[0] + muonCharge[1] == 0 :
