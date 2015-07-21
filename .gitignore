@@ -1,0 +1,9 @@
+*~
+*stdout
+*stderr
+*jdl
+*.pyc
+*.root
+*.png
+*.eps
+*.pdf
