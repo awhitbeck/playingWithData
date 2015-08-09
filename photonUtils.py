@@ -35,7 +35,7 @@ class photonUtil :
         self.sieie = getattr(self.tree,"photon_sigmaIetaIeta")
         self.isEB = getattr(self.tree,"photon_isEB")
         self.pixelSeed = getattr(self.tree,"photon_hasPixelSeed")
-        self.eleVeto = getattr(self.tree,"photon_hasPixelSeed")
+        self.eleVeto = getattr(self.tree,"photon_passElectronVeto")
         self.photIso = getattr(self.tree,"photon_pfGammaIsoRhoCorr")
         self.neutIso = getattr(self.tree,"photon_pfNeutralIsoRhoCorr")
         self.charIso = getattr(self.tree,"photon_pfChargedIsoRhoCorr")
@@ -64,7 +64,7 @@ class photonUtil :
 
     def passPixelSeed( self , p ) :
         
-        return self.pixelSeed[p] == 1. 
+        return self.pixelSeed[p] == 0. 
 
     def passHoverE( self , p ) : 
             
@@ -78,7 +78,7 @@ class photonUtil :
         if self.isEB[p] == 1. : 
             return self.sieie[p] < 0.0107
         else : 
-            return self.hOverE[p] < 0.0272
+            return self.sieie[p] < 0.0272
         
     def passCharIso( self , p ) : 
 
@@ -90,15 +90,15 @@ class photonUtil :
     def passNeutIso( self , p ) : 
         
         if self.isEB[p] == 1. : 
-            return self.neutIso[p] < 7.23 + exp(0.0028*self.fourVec[p].Pt()+0.5408)
+            return self.neutIso[p] < ( 7.23 + exp(0.0028*self.fourVec[p].Pt()+0.5408) )
         else : 
-            return self.neutIso[p] < 8.89 + 0.01725*self.fourVec[p].Pt()
+            return self.neutIso[p] < ( 8.89 + 0.01725*self.fourVec[p].Pt() )
 
     def passPhotIso( self , p ) :
 
         if self.isEB[p] == 1. : 
-            return self.photIso < 2.11 + 0.0014*self.fourVec[p].Pt()
+            return self.photIso[p] < ( 2.11 + 0.0014*self.fourVec[p].Pt() )
         else : 
-            return self.photIso < 3.09 + 0.0091*self.fourVec[p].Pt() 
+            return self.photIso[p] < ( 3.09 + 0.0091*self.fourVec[p].Pt() )
 
 

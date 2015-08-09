@@ -38,10 +38,12 @@ class sampleInfo :
 # ------------------------------------------------------------
 dataSamples = [ sampleInfo( "/store/user/awhitbe1/Run2015B-PromptReco_July17/Run2015B-PromptReco-v1.SinglePhoton*" , "SinglePhoton" , 1 , 1. , 1. , "Single-#gamma dataset" )  , 
                 sampleInfo( "/store/user/awhitbe1/Run2015B-PromptReco_July17/Run2015B-PromptReco-v1.DoubleMuon*" , "DoubleMuon" , 1 , 1. , 1. , "Double-#mu dataset" )  ,
-                sampleInfo( "/store/user/awhitbe1/Run2015B-PromptReco_July17/Run2015B-PromptReco-v1.DoubleEG*" , "DoubleElectron" , 1 , 1. , 1. , "Doube-e dataset" )  ]
+                sampleInfo( "/store/user/awhitbe1/Run2015B-PromptReco_July17/Run2015B-PromptReco-v1.DoubleEG*" , "DoubleElectron" , 1 , 1. , 1. , "Doube-e dataset" )  ,
+                sampleInfo( "/store/user/awhitbe1/Run2015B-PromptReco_July17/Run2015B-PromptReco-v1.SingleElectron*" , "SingleElectron" , 1 , 1. , 1. , "Single-e dataset" )  ,                
+                sampleInfo( "/store/user/awhitbe1/Run2015B-PromptReco_July17/Run2015B-PromptReco-v1.SingleMuon*" , "SingleMuon" , 1 , 1. , 1. , "Single-#mu dataset" )  ]
 
-samples = [ sampleInfo( "/store/user/bmahakud/PhotonTriggerStudy19thJuly2015/Spring15.GJets_HT-400To600*"                    ,  "Gjets400"        , kRed+2     , 62.05  , 0.0136   , "#gamma+jets" ) , 
-            sampleInfo( "/store/user/bmahakud/PhotonTriggerStudy19thJuly2015/Spring15.GJets_HT-600ToInf*"                    ,  "Gjets600"        , kRed+2     , 20.87  , 0.00481  , "#gamma+jets" ) ,
+samples = [ sampleInfo( "/store/user/bmahakud/PhotonTriggerStudy19thJuly2015/Spring15.GJets_HT-400To600*"                    ,  "Gjets400"        , kRed+2     , 273.  , 0.1102   , "#gamma+jets" ) , 
+            sampleInfo( "/store/user/bmahakud/PhotonTriggerStudy19thJuly2015/Spring15.GJets_HT-600ToInf*"                    ,  "Gjets600"        , kRed+2     , 94.5  , 0.03705  , "#gamma+jets" ) ,
             sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.ZJetsToNuNu_HT-400to600*"                                         ,  "Zinv400"         , kRed+2     , 15.23  , 0.00285  , "Z(#nu#nu)+jets" ) ,
             sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.ZJetsToNuNu_HT-600toInf*"                                         ,  "Zinv600"         , kRed+2     , 5.22   , 0.000954 , "Z(#nu#nu)+jets" ) ,
             sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.DYJetsToLL_M-50_HT-400to600*"                                     ,  "DYJets400"       , kOrange+1     , 6.546  , 0.00133  , "Drell-Yan+jets" ) ,

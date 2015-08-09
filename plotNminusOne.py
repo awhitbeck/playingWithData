@@ -14,10 +14,10 @@ histoTemplate["HoverE"] =  TH1F("H/E",";H/E;Events",60,0,0.1)
 histoTemplate["charIso"] =  TH1F("charIso",";Charged Isolation;Events",60,0,10)
 histoTemplate["photIso"] =  TH1F("photIso",";Photon Isolation;Events",60,0,10)
 histoTemplate["neutIso"] =  TH1F("neutIso",";Neutral Had. Isolation;Events",60,0,10)
-histoTemplate["pt"] = TH1F("pt",";p_{T,#gamma} [GeV];Events",50,100.,500.)
+histoTemplate["pt"] = TH1F("pt",";p_{T,#gamma} [GeV];Events",20,100.,500.)
 histoTemplate["pixelSeed"] = TH1F("pixelSeed",";Pixel Seed;Events",2,-0.5,1.5)
 
-lumi = 0.0492
+lumi = 0.045
 
 photonCuts = {}
 photonVars = {}
@@ -48,13 +48,17 @@ def plotHisto( sample , maxEvents ) :
 
         sample.tree.GetEntry(iEvt)
         HT = getattr( sample.tree , "HT" )
-
+        run = getattr( sample.tree , "RunNum" )
+        NumPhotons = getattr( sample.tree , "NumPhotons" )
         photon.getBranches( iEvt )
         trigger.getBranches( iEvt )
+
+        if NumPhotons > 1 : continue
 
         if iEvt % 10000 == 0 : 
             print "event:",iEvt
 
+        
         if photon.fourVec.size() > 0 and HT > 500. and trigger.result( "HLT_Photon90_CaloIdL_PFHT500" ) == 1 : 
             for p in range( len( photon.fourVec ) ) : 
 
@@ -71,11 +75,12 @@ def plotHisto( sample , maxEvents ) :
 
                 ################# loop over different cut combinations #####################
                 for key in photonCuts : 
+                    
+                    passCuts = True
                     for cut in photonCuts[key] : 
-                        if not cut( p ) : break 
+                        if not cut( p ) : passCuts = False 
                         
-                        #print key,photonVars[key]
-
+                    if passCuts : 
                         if maxEvents != -1 :
                             histo_[key].Fill(photonVars[key],sample.weight*numEvents/maxEvents)
                         else :
@@ -99,7 +104,7 @@ for s in samples :
 
     if not s.tag in sampleListMC : continue 
 
-    histoMC[s] = plotHisto(s,100000)
+    histoMC[s] = plotHisto(s,1000000)
     for key in histoTemplate : 
         histoMC[s][key].SetFillColor(s.color)
         histoMC[s][key].SetLineColor(s.color)
@@ -139,8 +144,8 @@ for s in dataSamples :
             first[key]=False
         else : 
             totalData[key].Add(histoData[s][key])
-
-        totalMC[key].Scale(totalData[key].Integral()/totalMC[key].Integral())
+            
+        #totalMC[key].Scale(totalData[key].Integral()/totalMC[key].Integral())
 
 can = {}
 

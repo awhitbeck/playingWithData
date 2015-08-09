@@ -14,26 +14,35 @@ def plotDrellYanCRHisto( sample , maxEvents ) :
     histo_ = {}
 
     MHTbinning = array('f',[200,250,350,500,1000])
+    MHTLoosebinning = array('f',[125,200,350,500,1000])
     HTbinning = array('f',[500,600,800,1200])
+    HTLoosebinning = array('f',[400,550,800,1200])
     NJetsbinning = array('f',[4.,7.,9.,12.])
     BTagsbinning = array('f',[-0.5,0.5,1.5,3.5])
+    BTagsLoosebinning = array('f',[-0.5,0.5,1.5,3.5])
 
     histo_["HT"] = TH1F("HTclean",";H_{T} [GeV];Events",20,400.,1000.)
     histo_["HT"].SetName(sample.tag+"_HT")
+    histo_["HTLoose"] = TH1F("HTclean",";H_{T} [GeV];Events",len(HTLoosebinning)-1,HTLoosebinning)
+    histo_["HTLoose"].SetName(sample.tag+"_HTLoose")
     histo_["HTcustBin"] = TH1F("HTclean_custBin",";H_{T} [GeV];Events",len(HTbinning)-1,HTbinning)
     histo_["HTcustBin"].SetName(sample.tag+"_HTcustBin")
     histo_["MHT"] = TH1F("MHT",";H^{miss}_{T} [GeV];Events",20,100.,700.)
     histo_["MHT"].SetName(sample.tag+"_MHT")
+    histo_["MHTLoose"] = TH1F("MHT",";H^{miss}_{T} [GeV];Events",len(MHTLoosebinning)-1,MHTLoosebinning)
+    histo_["MHTLoose"].SetName(sample.tag+"_MHTLoose")
     histo_["MHTcustBin"] = TH1F("MHTcustBin",";H^{miss}_{T} [GeV];Events",len(MHTbinning)-1,MHTbinning)
-    histo_["MHTcustBin"].SetName(sample.tag+"_MHT")
-    histo_["NJets"] = TH1F("NJetsclean",";N_{jets};Events",7,.5,7.5)
-    histo_["NJets"].SetName(sample.tag+"_NJets")
+    histo_["MHTcustBin"].SetName(sample.tag+"_MHTcustBin")
+    histo_["NJetsLoose"] = TH1F("NJetsclean",";N_{jets};Events",7,.5,7.5)
+    histo_["NJetsLoose"].SetName(sample.tag+"_NJetsLoose")
     histo_["NJetscustBin"] = TH1F("NJetsclean_custBin",";N_{jets};Events",len(NJetsbinning)-1,NJetsbinning)
-    histo_["NJetscustBin"].SetName(sample.tag+"_NJets")
+    histo_["NJetscustBin"].SetName(sample.tag+"_NJetscustBin")
     histo_["BTags"] = TH1F("BTagsclean",";N_{b-jets} ;Events",4,-0.5,3.5)
     histo_["BTags"].SetName(sample.tag+"_BTags")
+    histo_["BTagsLoose"] = TH1F("BTagsclean",";N_{b-jets} ;Events",len(BTagsLoosebinning)-1,BTagsLoosebinning)
+    histo_["BTagsLoose"].SetName(sample.tag+"_BTagsLoose")
     histo_["BTagscustBin"] = TH1F("BTagsclean_custBin",";N_{b-jets} ;Events",len(BTagsbinning)-1,BTagsbinning)
-    histo_["BTagscustBin"].SetName(sample.tag+"_BTags")
+    histo_["BTagscustBin"].SetName(sample.tag+"_BTagscustBin")
     histo_["DeltaPhi1"] = TH1F("DeltaPhi1",";#Delta#phi_{1} ;Events",10,0.,3.1415)
     histo_["DeltaPhi1"].SetName(sample.tag+"_DeltaPhi1")
     histo_["DeltaPhi2"] = TH1F("DeltaPhi2",";#Delta#phi_{2} ;Events",10,0.,3.1415)
@@ -89,11 +98,30 @@ def plotDrellYanCRHisto( sample , maxEvents ) :
                     
             if RA2.HTclean > 500. and RA2.MHTclean > 200. and RA2.DeltaPhi1clean > 0.5 and RA2.DeltaPhi2clean > 0.5 and RA2.DeltaPhi3clean > 0.3 : 
                 if maxEvents != -1 :
-                    histo_["NJets"].Fill(RA2.NJetsclean,sample.weight*numEvents/maxEvents)
                     histo_["NJetscustBin"].Fill(RA2.NJetsclean,sample.weight*numEvents/maxEvents)
                 else :
-                    histo_["NJets"].Fill(RA2.NJetsclean,sample.weight)
                     histo_["NJetscustBin"].Fill(RA2.NJetsclean,sample.weight)
+
+            if RA2.HTclean > 400. and RA2.MHTclean > 125. and RA2.DeltaPhi1clean > 0.5 and RA2.DeltaPhi2clean > 0.5 and RA2.DeltaPhi3clean > 0.3 : 
+                if maxEvents != -1 :
+                    histo_["NJetsLoose"].Fill(RA2.NJetsclean,sample.weight*numEvents/maxEvents)
+                else :
+                    histo_["NJetsLoose"].Fill(RA2.NJetsclean,sample.weight)
+
+                if maxEvents != -1 :
+                    histo_["MHTLoose"].Fill(RA2.MHTclean,sample.weight*numEvents/maxEvents)
+                else :
+                    histo_["MHTLoose"].Fill(RA2.MHTclean,sample.weight)
+
+                if maxEvents != -1 :
+                    histo_["BTagsLoose"].Fill(RA2.BTagsclean,sample.weight*numEvents/maxEvents)
+                else :
+                    histo_["BTagsLoose"].Fill(RA2.BTagsclean,sample.weight)
+
+                if maxEvents != -1 :
+                    histo_["HTLoose"].Fill(RA2.HTclean,sample.weight*numEvents/maxEvents)
+                else :
+                    histo_["HTLoose"].Fill(RA2.HTclean,sample.weight)
 
             if RA2.HTclean > 500. and RA2.MHTclean > 200. and RA2.NJetsclean > 3 and RA2.DeltaPhi1clean > 0.5 and RA2.DeltaPhi2clean > 0.5 and RA2.DeltaPhi3clean > 0.3 : 
                 if maxEvents != -1 :
@@ -128,26 +156,35 @@ def plotPhotonCRHisto( sample , maxEvents ) :
     histo_ = {}
 
     MHTbinning = array('f',[200,250,350,500,1000])
+    MHTLoosebinning = array('f',[125,200,350,500,1000])
     HTbinning = array('f',[500,600,800,1200])
+    HTLoosebinning = array('f',[400,550,800,1200])
     NJetsbinning = array('f',[4.,7.,9.,12.])
     BTagsbinning = array('f',[-0.5,0.5,1.5,3.5])
+    BTagsLoosebinning = array('f',[-0.5,0.5,1.5,3.5])
 
     histo_["HT"] = TH1F("HTclean",";H_{T} [GeV];Events",20,400.,1000.)
     histo_["HT"].SetName(sample.tag+"_HT")
+    histo_["HTLoose"] = TH1F("HTclean",";H_{T} [GeV];Events",len(HTLoosebinning)-1,HTLoosebinning)
+    histo_["HTLoose"].SetName(sample.tag+"_HTLoose")
     histo_["HTcustBin"] = TH1F("HTclean_custBin",";H_{T} [GeV];Events",len(HTbinning)-1,HTbinning)
     histo_["HTcustBin"].SetName(sample.tag+"_HTcustBin")
     histo_["MHT"] = TH1F("MHT",";H^{miss}_{T} [GeV];Events",20,100.,700.)
     histo_["MHT"].SetName(sample.tag+"_MHT")
+    histo_["MHTLoose"] = TH1F("MHT",";H^{miss}_{T} [GeV];Events",len(MHTLoosebinning)-1,MHTLoosebinning)
+    histo_["MHTLoose"].SetName(sample.tag+"_MHTLoose")
     histo_["MHTcustBin"] = TH1F("MHTcustBin",";H^{miss}_{T} [GeV];Events",len(MHTbinning)-1,MHTbinning)
-    histo_["MHTcustBin"].SetName(sample.tag+"_MHT")
-    histo_["NJets"] = TH1F("NJetsclean",";N_{jets};Events",7,0.5,7.5)
-    histo_["NJets"].SetName(sample.tag+"_NJets")
+    histo_["MHTcustBin"].SetName(sample.tag+"_MHTcustBin")
+    histo_["NJetsLoose"] = TH1F("NJetsclean",";N_{jets};Events",7,.5,7.5)
+    histo_["NJetsLoose"].SetName(sample.tag+"_NJetsLoose")
     histo_["NJetscustBin"] = TH1F("NJetsclean_custBin",";N_{jets};Events",len(NJetsbinning)-1,NJetsbinning)
-    histo_["NJetscustBin"].SetName(sample.tag+"_NJets")
+    histo_["NJetscustBin"].SetName(sample.tag+"_NJetscustBin")
     histo_["BTags"] = TH1F("BTagsclean",";N_{b-jets} ;Events",4,-0.5,3.5)
     histo_["BTags"].SetName(sample.tag+"_BTags")
+    histo_["BTagsLoose"] = TH1F("BTagsclean",";N_{b-jets} ;Events",len(BTagsLoosebinning)-1,BTagsLoosebinning)
+    histo_["BTagsLoose"].SetName(sample.tag+"_BTagsLoose")
     histo_["BTagscustBin"] = TH1F("BTagsclean_custBin",";N_{b-jets} ;Events",len(BTagsbinning)-1,BTagsbinning)
-    histo_["BTagscustBin"].SetName(sample.tag+"_BTags")
+    histo_["BTagscustBin"].SetName(sample.tag+"_BTagscustBin")
     histo_["DeltaPhi1"] = TH1F("DeltaPhi1",";#Delta#phi_{1} ;Events",10,0.,3.1415)
     histo_["DeltaPhi1"].SetName(sample.tag+"_DeltaPhi1")
     histo_["DeltaPhi2"] = TH1F("DeltaPhi2",";#Delta#phi_{2} ;Events",10,0.,3.1415)
@@ -202,11 +239,31 @@ def plotPhotonCRHisto( sample , maxEvents ) :
                     
             if RA2.HTclean > 500. and RA2.MHTclean > 200. and RA2.DeltaPhi1clean > 0.5 and RA2.DeltaPhi2clean > 0.5 and RA2.DeltaPhi3clean > 0.3 : 
                 if maxEvents != -1 :
-                    histo_["NJets"].Fill(RA2.NJetsclean,sample.weight*numEvents/maxEvents)
                     histo_["NJetscustBin"].Fill(RA2.NJetsclean,sample.weight*numEvents/maxEvents)
                 else :
-                    histo_["NJets"].Fill(RA2.NJetsclean,sample.weight)
                     histo_["NJetscustBin"].Fill(RA2.NJetsclean,sample.weight)
+
+            if RA2.HTclean > 400. and RA2.MHTclean > 125. and RA2.DeltaPhi1clean > 0.5 and RA2.DeltaPhi2clean > 0.5 and RA2.DeltaPhi3clean > 0.3 : 
+                if maxEvents != -1 :
+                    histo_["NJetsLoose"].Fill(RA2.NJetsclean,sample.weight*numEvents/maxEvents)
+                else :
+                    histo_["NJetsLoose"].Fill(RA2.NJetsclean,sample.weight)
+
+                if maxEvents != -1 :
+                    histo_["MHTLoose"].Fill(RA2.MHTclean,sample.weight*numEvents/maxEvents)
+                else :
+                    histo_["MHTLoose"].Fill(RA2.MHTclean,sample.weight)
+
+                if maxEvents != -1 :
+                    histo_["BTagsLoose"].Fill(RA2.BTagsclean,sample.weight*numEvents/maxEvents)
+                else :
+                    histo_["BTagsLoose"].Fill(RA2.BTagsclean,sample.weight)
+
+                if maxEvents != -1 :
+                    histo_["HTLoose"].Fill(RA2.HTclean,sample.weight*numEvents/maxEvents)
+                else :
+                    histo_["HTLoose"].Fill(RA2.HTclean,sample.weight)
+
 
             if RA2.HTclean > 500. and RA2.MHTclean > 200. and RA2.NJetsclean > 3 and RA2.DeltaPhi1clean > 0.5 and RA2.DeltaPhi2clean > 0.5 and RA2.DeltaPhi3clean > 0.3 : 
                 if maxEvents != -1 :

@@ -17,7 +17,9 @@ x509userproxy = $ENV(X509_USER_PROXY)
 Arguments = {0}
 Queue 1"""
 
-samples = [ "DYJets400" , "DYJets600" , "DoubleMuon" , "DoubleElectron" ]
+samples = [ #"DYJets400" , "DYJets600" 
+            "DoubleMuon" , "DoubleElectron" 
+            ]
 
 for s in samples :
 
