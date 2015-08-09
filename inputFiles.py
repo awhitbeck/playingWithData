@@ -4,7 +4,7 @@ import subprocess
 
 eosDir = "/eos/uscms"
 redirector = "root://cmsxrootd.fnal.gov//"
-baseDir = "/store/user/awhitbe1/PHYS14productionV13/"
+baseDir = "/store/user/lpcsusyhad/SusyRA2Analysis2015/FinalProductionDPS/"
 lumi = 10000
 
 # ------------------------------------------------------------
@@ -36,55 +36,46 @@ class sampleInfo :
 # ------------------------------------------------------------
 # ------------------------------------------------------------
 # ------------------------------------------------------------
-dataSamples = [ sampleInfo( "/store/user/awhitbe1/Run2015B-PromptReco_July17/Run2015B-PromptReco-v1.SinglePhoton*" , "SinglePhoton" , 1 , 1. , 1. , "Single-#gamma dataset" )  , 
-                sampleInfo( "/store/user/awhitbe1/Run2015B-PromptReco_July17/Run2015B-PromptReco-v1.DoubleMuon*" , "DoubleMuon" , 1 , 1. , 1. , "Double-#mu dataset" )  ,
-                sampleInfo( "/store/user/awhitbe1/Run2015B-PromptReco_July17/Run2015B-PromptReco-v1.DoubleEG*" , "DoubleElectron" , 1 , 1. , 1. , "Doube-e dataset" )  ,
-                sampleInfo( "/store/user/awhitbe1/Run2015B-PromptReco_July17/Run2015B-PromptReco-v1.SingleElectron*" , "SingleElectron" , 1 , 1. , 1. , "Single-e dataset" )  ,                
-                sampleInfo( "/store/user/awhitbe1/Run2015B-PromptReco_July17/Run2015B-PromptReco-v1.SingleMuon*" , "SingleMuon" , 1 , 1. , 1. , "Single-#mu dataset" )  ]
+dataSamples = [ sampleInfo( baseDir+"Run2015B-PromptReco-v1.SinglePhoton*"   , "SinglePhoton"   , 1 , 1. , 1. , "Data" ) ,
+                sampleInfo( baseDir+"Run2015B-17Jul2015-v1.SinglePhoton*"    , "SinglePhoton"   , 1 , 1. , 1. , "Data" ) ,
+                sampleInfo( baseDir+"Run2015B-PromptReco-v1.DoubleMuon*"     , "DoubleMuon"     , 1 , 1. , 1. , "Data" ) ,
+                sampleInfo( baseDir+"Run2015B-17Jul2015-v1.DoubleMuon*"      , "DoubleMuon"     , 1 , 1. , 1. , "Data" ) ,
+                sampleInfo( baseDir+"Run2015B-PromptReco-v1.DoubleEG*"       , "DoubleElectron" , 1 , 1. , 1. , "Data" ) ,
+                sampleInfo( baseDir+"Run2015B-17Jul2015-v1.DoubleEG*"        , "DoubleElectron" , 1 , 1. , 1. , "Data" ) ,
+                sampleInfo( baseDir+"Run2015B-PromptReco-v1.SingleElectron*" , "SingleElectron" , 1 , 1. , 1. , "Data" ) ,
+                sampleInfo( baseDir+"Run2015B-17Jul2015-v1.SingleElectron*"  , "SingleElectron" , 1 , 1. , 1. , "Data" ) ,
+                sampleInfo( baseDir+"Run2015B-PromptReco-v1.SingleMuon*"     , "SingleMuon"     , 1 , 1. , 1. , "Data" ) ,
+                sampleInfo( baseDir+"Run2015B-17Jul2015-v1.SingleMuon*"      , "SingleMuon"     , 1 , 1. , 1. , "Data" ) ,
+                sampleInfo( baseDir+"Run2015B-PromptReco-v1.HTMHT*"          , "HTMHT"          , 1 , 1. , 1. , "Data" ) ,
+                sampleInfo( baseDir+"Run2015B-17Jul2015-v1.HTMHT*"           , "HTMHT"          , 1 , 1. , 1. , "Data" )                 
+                ]
 
-samples = [ sampleInfo( "/store/user/bmahakud/PhotonTriggerStudy19thJuly2015/Spring15.GJets_HT-400To600*"                    ,  "Gjets400"        , kRed+2     , 273.  , 0.1102   , "#gamma+jets" ) , 
-            sampleInfo( "/store/user/bmahakud/PhotonTriggerStudy19thJuly2015/Spring15.GJets_HT-600ToInf*"                    ,  "Gjets600"        , kRed+2     , 94.5  , 0.03705  , "#gamma+jets" ) ,
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.ZJetsToNuNu_HT-400to600*"                                         ,  "Zinv400"         , kRed+2     , 15.23  , 0.00285  , "Z(#nu#nu)+jets" ) ,
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.ZJetsToNuNu_HT-600toInf*"                                         ,  "Zinv600"         , kRed+2     , 5.22   , 0.000954 , "Z(#nu#nu)+jets" ) ,
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.DYJetsToLL_M-50_HT-400to600*"                                     ,  "DYJets400"       , kOrange+1     , 6.546  , 0.00133  , "Drell-Yan+jets" ) ,
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.DYJetsToLL_M-50_HT-600toInf*"                                     ,  "DYJets600"       , kOrange+1     , 2.179  , 0.000490 , "Drell-Yan+jets" ) ,
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.QCD_HT-500To1000_13TeV-madgraph_ext1_[0-9]_RA2AnalysisTree.root"  ,  "QCD500ext1"      , kGreen+2   , 26740. , 57.66    , "QCD" ) ,
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.QCD_HT_1000ToInf_13TeV-madgraph_ext1_[0-9]_RA2AnalysisTree.root"  ,  "QCD1000ext1"     , kGreen+2   , 769.7  , 3.33     , "QCD" ) ,
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.QCD_HT-500To1000_13TeV-madgraph_[0-9]_RA2AnalysisTree.root"       ,  "QCD500"          , kGreen+2   , 26740. , 458.50   , "QCD" ) ,
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.QCD_HT_1000ToInf_13TeV-madgraph_[0-9]_RA2AnalysisTree.root"       ,  "QCD1000"         , kGreen+2   , 769.7  , 1.65     , "QCD" ) ,
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.TTJets_MSDecaysCKM*"                                              ,  "TTJets"          , kCyan      , 806.1  , 0.0342   , "t#bar{t}" ) ,
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.WJetsToLNu_HT-400to600*"                                          ,  "WJets400"        , kOrange-3  , 68.40  , 0.0122   , "W+jets" ) ,
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.WJetsToLNu_HT-600toInf*"                                          ,  "WJets600"        , kOrange-3  , 23.14  , 0.00422  , "W+jets" ) ,
-                                                                                                                                                                                                  
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.SMS-T1bbbb_2J_mGl-1000_mLSP-900*"                                 ,  "T1bbbb_1000-900" , kMagenta+1 , 1.0    , 1.0      , "T1bbbb"        ) ,
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.SMS-T1bbbb_2J_mGl-1500_mLSP-100*"                                 ,  "T1bbbb_1500-100" , kMagenta+1 , 1.0    , 1.0      , "T1bbbb (Comp)" ) ,
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.SMS-T1qqqq_2J_mGl-1000_mLSP-800*"                                 ,  "T1qqqq_1000-800" , kMagenta+1 , 1.0    , 1.0      , "T1qqqq"        ) ,
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.SMS-T1qqqq_2J_mGl-1400_mLSP-100*"                                 ,  "T1qqqq_1500-100" , kMagenta+1 , 1.0    , 1.0      , "T1qqqq (Comp)" ) ,
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.SMS-T1tttt_2J_mGl-1200_mLSP-800*"                                 ,  "T1tttt_1200-800" , kMagenta+1 , 1.0    , 1.0      , "T1tttt"        ) ,
-            sampleInfo( "/store/user/awhitbe1/PHYS14productionV15/PHYS14.SMS-T1tttt_2J_mGl-1500_mLSP-100*"                                 ,  "T1tttt_1500-100" , kMagenta+1 , 1.0    , 1.0      , "T1tttt (Comp)" )
+samples = [ sampleInfo( baseDir+"Spring15.GJets_HT-400To600*"           ,  "Gjets400"  , kRed+1     , 273.    , 0.132 , "#gamma+jets" ) , 
+            sampleInfo( baseDir+"Spring15.GJets_HT-600ToInf*"           ,  "Gjets600"  , kRed+1     , 94.5    , 0.0379 , "#gamma+jets" ) ,
+            sampleInfo( baseDir+"Spring15.ZJetsToNuNu_HT-600ToInf*"     ,  "Zinv400"   , kRed+2     , 10.94   , 0.0117 , "Z(#nu#nu)+jets" ) ,
+            sampleInfo( baseDir+"Spring15.ZJetsToNuNu_HT-400To600*"     ,  "Zinv600"   , kRed+2     , 4.203   , 0.00414 , "Z(#nu#nu)+jets" ) ,
+            sampleInfo( baseDir+"Spring15.DYJetsToLL_M-50_HT-400to600*" ,  "DYJets400" , kMagenta   , 6.761   , 0.00744 , "Drell-Yan+jets" ) ,
+            sampleInfo( baseDir+"Spring15.DYJetsToLL_M-50_HT-600toInf*" ,  "DYJets600" , kMagenta   , 2.718   , 0.000810 , "Drell-Yan+jets" ) ,
+            sampleInfo( baseDir+"Spring15.QCD_Pt_80to120*"              ,  "QCDpt80"   , kGreen+2   , 2762530 , 830.8 , "QCD" ) ,
+            sampleInfo( baseDir+"Spring15.QCD_Pt_120to170*"             ,  "QCDpt120"  , kGreen+2   , 471100 , 140.5  , "QCD" ) ,
+            sampleInfo( baseDir+"Spring15.QCD_Pt_170to300*"             ,  "QCDpt170"  , kGreen+2   , 117276 , 34.9   , "QCD" ) ,
+            sampleInfo( baseDir+"Spring15.QCD_Pt_300to470*"             ,  "QCDpt300"  , kGreen+2   , 7823   , 2.70   , "QCD" ) ,
+            sampleInfo( baseDir+"Spring15.QCD_Pt_470to600*"             ,  "QCDpt470"  , kGreen+2   , 648.2  , 0.335  , "QCD" ) ,
+            sampleInfo( baseDir+"Spring15.QCD_Pt_600to800*"             ,  "QCDpt600"  , kGreen+2   , 186.9  , 0.100  , "QCD" ) ,
+            sampleInfo( baseDir+"Spring15.QCD_Pt_800to1000*"            ,  "QCDpt800"  , kGreen+2   , 32.293 , 0.0174 , "QCD" ) ,
+            sampleInfo( baseDir+"Spring15.QCD_Pt_1000to1400*"           ,  "QCDpt1000" , kGreen+2   , 9.4183 , 0.00635, "QCD" ) ,
+            sampleInfo( baseDir+"Spring15.QCD_Pt_1400to1800*"           ,  "QCDpt1400" , kGreen+2   , 0.84265, 0.00431, "QCD" ) ,
+            sampleInfo( baseDir+"Spring15.QCD_Pt_1800to2400*"           ,  "QCDpt1800" , kGreen+2   , 0.114943, 0.000594, "QCD" ) ,
+            sampleInfo( baseDir+"Spring15.QCD_Pt_2400to3200*"           ,  "QCDpt2400" , kGreen+2   , 0.00682981, 3.51e-5, "QCD" ) ,
+            sampleInfo( baseDir+"Spring15.QCD_Pt_3200toInf*"            ,  "QCDpt3200" , kGreen+2   , 0.000165445, 8.84e-7, "QCD" ) ,
+            sampleInfo( baseDir+"Spring15.TTJets_TuneCUETP8M1_13TeV*"   ,  "TTJets"    , kCyan      , 806.1  , 0.0740   , "t#bar{t}" ) ,
+            sampleInfo( baseDir+"Spring15.WJetsToLNu_HT-400To600*"      ,  "WJets400"  , kOrange-3  , 68.40  , 0.0325   , "W+jets" ) ,
+            sampleInfo( baseDir+"Spring15.WJetsToLNu_HT-600ToInf*"      ,  "WJets600"  , kOrange-3  , 23.14  , 0.0222   , "W+jets" ) ,
+            #sampleInfo( baseDir+"PHYS14.SMS-T1bbbb_2J_mGl-1000_mLSP-900*" ,  "T1bbbb_1000-900" , kMagenta+1 , 1.0 , 1.0 , "T1bbbb"        ) ,
+            #sampleInfo( baseDir+"PHYS14.SMS-T1bbbb_2J_mGl-1500_mLSP-100*" ,  "T1bbbb_1500-100" , kMagenta+1 , 1.0 , 1.0 , "T1bbbb (Comp)" ) ,
+            #sampleInfo( baseDir+"PHYS14.SMS-T1qqqq_2J_mGl-1000_mLSP-800*" ,  "T1qqqq_1000-800" , kMagenta+1 , 1.0 , 1.0 , "T1qqqq"        ) ,
+            #sampleInfo( baseDir+"PHYS14.SMS-T1qqqq_2J_mGl-1400_mLSP-100*" ,  "T1qqqq_1500-100" , kMagenta+1 , 1.0 , 1.0 , "T1qqqq (Comp)" ) ,
+            #sampleInfo( baseDir+"PHYS14.SMS-T1tttt_2J_mGl-1200_mLSP-800*" ,  "T1tttt_1200-800" , kMagenta+1 , 1.0 , 1.0 , "T1tttt"        ) ,
+            #sampleInfo( baseDir+"PHYS14.SMS-T1tttt_2J_mGl-1500_mLSP-100*" ,  "T1tttt_1500-100" , kMagenta+1 , 1.0 , 1.0 , "T1tttt (Comp)" )
             ]
-
-# --------------------------------
-# some utilities for loading and |
-# looping over kevin's trees     |
-# --------------------------------
-baseDirPedro = "/eos/uscms/store/user/pedrok/SUSY2015/Analysis/dphitest/tree_GJet_CleanVars/"
-
-samplesPedro = [ sampleInfo(    "tree_WJetsToLNu_HT-400to600.root"       , "WJetsToLNu_HT-400to600"  , kOrange-3 , 68.40 ),
-                 sampleInfo(    "tree_WJetsToLNu_HT-600toInf_part1.root" , "WJetsToLNu_HT-600toInf_part1" , kOrange-3 , 23.14 ),
-                 sampleInfo(    "tree_WJetsToLNu_HT-600toInf_part2.root" , "WJetsToLNu_HT-600toInf_part2" , kOrange-3 , 23.14 ),
-                 sampleInfo("tree_WJetsToLNu_HT-600toInf_part3.root" , "WJetsToLNu_HT-600toInf_part3"     , kOrange-3 , 23.14 ),
-                 sampleInfo("tree_QCD_HT-500to1000.root"      , "QCD_HT-500to1000"      , kGreen+2 , 26740 ),
-                 sampleInfo("tree_QCD_HT-500to1000_ext1.root" , "QCD_HT-500to1000_ext1" , kGreen+2 , 26740 ),
-                 sampleInfo("tree_QCD_HT-1000toInf.root"      , "QCD_HT-1000toInf"      , kGreen+2 , 769.7 ),
-                 sampleInfo("tree_QCD_HT-1000toInf_ext1.root" , "QCD_HT-1000toInf_ext1" , kGreen+2 , 769.7 ), 
-                 sampleInfo("tree_TTJets_part1.root" , "TTJets_part1" , kCyan , 806.1 ),
-                 sampleInfo("tree_TTJets_part2.root" , "TTJets_part2" , kCyan , 806.1 ),
-                 sampleInfo("tree_TTJets_part3.root" , "TTJets_part3" , kCyan , 806.1 ),
-                 sampleInfo("tree_TTJets_part4.root" , "TTJets_part4" , kCyan , 806.1 ),
-                 sampleInfo("tree_TTJets_part5.root" , "TTJets_part5" , kCyan , 806.1 ),
-                 sampleInfo(    "tree_GJets_HT-400to600.root"  , "GJets_HT-400to600" , kRed+2 , 62.05 ) ,
-                 sampleInfo(    "tree_GJets_HT-600toInf.root"  , "GJets_HT-600toInf" , kRed+2 , 20.87 ) 
-                 ]
-    
 

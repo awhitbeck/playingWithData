@@ -5,7 +5,7 @@ SqrtSlumi = TPaveText(.67,.98,.97,.95,"NDC")
 
 def setLumi( lumi = 10. ):
     SqrtSlumi.Clear()
-    SqrtSlumi.AddText("L={0}".format(lumi)+" fb^{-1}, #sqrt{s}=13 TeV")
+    SqrtSlumi.AddText("L={0}".format(lumi)+" pb^{-1}, #sqrt{s}=13 TeV")
 
 def drawLabels():
     CMSlabel.Draw()

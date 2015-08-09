@@ -17,7 +17,7 @@ parser.add_option("-s", "--samples", dest="samplesRaw", default="Gjets400",
 sampleList = options.samplesRaw.split(",")
 ###################################################
 
-lumi = 0.049
+lumi = 40.03
 
 histo = {}
 

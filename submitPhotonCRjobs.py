@@ -17,9 +17,20 @@ x509userproxy = $ENV(X509_USER_PROXY)
 Arguments = {0}
 Queue 1"""
 
-samples = [ #"Gjets400" , "Gjets600"  
-    "SinglePhoton" 
-    ]
+samples = [ "Gjets400" , "Gjets600" , 
+            
+            "DYJets400" , "DYJets600" , 
+
+            "QCDpt80" , "QCDpt120" , "QCDpt170" , "QCDpt300" , 
+            "QCDpt470" , "QCDpt600" , "QCDpt800" , "QCDpt1000" ,
+            "QCDpt1400" , "QCDpt1800" , "QCDpt2400" , "QCDpt3200" , 
+
+            "TTJets" ,
+
+            "WJets400" , "WJets600" , 
+
+            "SinglePhoton" 
+            ]
 
 for s in samples :
 

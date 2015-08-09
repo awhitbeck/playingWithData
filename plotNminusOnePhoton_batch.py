@@ -23,18 +23,18 @@ histo = {}
 
 samples.extend( dataSamples )
 
-for s in samples :
+for s in samples : 
 
     if not s.tag in sampleList : continue 
 
-    outFile = TFile("drellYanCRkin_{0}.root".format(s.tag),"RECREATE")
+    outFile = TFile("NminusOnePhoton_{0}.root".format(s.tag),"RECREATE")
 
-    histo[s] = plotDrellYanCRHisto(s,-1)
-    for key in histo[s] :
+    histo[s] = plotNminusOneHisto(s,-1)
+    for key in histo[s] : 
         histo[s][key].SetFillColor(s.color)
         histo[s][key].SetLineColor(s.color)
         histo[s][key].GetXaxis().SetNdivisions(505)
         #histo[s][key].Scale(lumi)
         histo[s][key].Write()
-    
+
     outFile.Close()
