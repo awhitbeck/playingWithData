@@ -3,9 +3,6 @@ from math import *
 from inputFiles import *
 from commissioningUtils import *
 
-gROOT.ProcessLine(".L ~/tdrstyle.C")
-gROOT.ProcessLine("setTDRStyle()")
-
 ######################################
 from optparse import OptionParser
 

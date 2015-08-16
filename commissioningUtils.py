@@ -44,7 +44,6 @@ def plotNminusOneHisto( sample , maxEvents ) :
 
         sample.tree.GetEntry(iEvt)
         HT = getattr( sample.tree , "HT" )
-        run = getattr( sample.tree , "RunNum" )
         NumPhotons = getattr( sample.tree , "NumPhotons" )
         photon.getBranches( iEvt )
         trigger.getBranches( iEvt )
@@ -125,6 +124,10 @@ def plotDrellYanCRHisto( sample , maxEvents ) :
     histo_["DeltaPhi3"] = TH1F("DeltaPhi3",";#Delta#phi_{3} ;Events",10,0.,3.1415)
     histo_["DeltaPhi3"].SetName(sample.tag+"_DeltaPhi3")
 
+    histo_["Mll_allPt"] = TH1F(sample.tag+"_Mll_allPt",";m_{#l#l} [GeV];Events",20,10,210)
+    histo_["Zpt"] = TH1F(sample.tag+"Zpt",";p_{T,Z} [GeV];Events",20,10,400)
+    histo_["Zeta"] = TH1F(sample.tag+"Zeta",";#eta_{Z} [GeV];Events",20,-5,5)
+    
     numEvents = sample.tree.GetEntries()
     photon = photonUtil( sample.tree )
     trigger = triggerUtil( sample.tree )
